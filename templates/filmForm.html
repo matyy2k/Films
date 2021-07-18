@@ -1,0 +1,46 @@
+{% extends 'glowny.html' %}
+{% load bootstrap %}
+{% block title %} Film Form {% endblock %}
+
+{% block site %}
+    <div class="card" style="width: 32rem; float:left; margin-right: 1rem;">
+        <div class="card-body">
+            {% if nowy %}
+                <h5 class="card-title">Nowy film</h5>
+            {% else %}
+                <h5 class="card-title">Edytuj film</h5>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                {{ formDodatkowe|bootstrap }}
+                    {% if nowy %}
+                        <button type="submit" class="btn btn-primary new">Dodaj film</button>
+                    {% else %}
+                        <button type="submit" class="btn btn-primary new">Edytuj film</button>
+                    {% endif %}
+            </form>
+        </div>
+    </div>
+    {% if formOcena %}
+    <div class="card" style="width: 32rem; float:left; margin-right: 1rem;">
+        <div class="card-body">
+                <h5 class="card-title">Oceń film</h5>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ formOcena|bootstrap }}
+                <button type="submit" class="btn btn-primary new">Oceń</button>
+
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    {% for ocena in oceny %}
+        <h4>Gwiazdki: {{ocena.stars}}</h4>
+        <p>{{ocena.recenzja}}</p>
+    {% endfor %}
+    <a href="{% url 'allFilms' %}">Back</a>
+
+{% endblock %}

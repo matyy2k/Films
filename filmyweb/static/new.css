@@ -1,0 +1,21 @@
+body {
+    padding:2rem;
+
+}
+
+.btn-outline-primary {
+    margin-top: 10px;
+}
+
+.new {
+    margin:10px;
+}
+
+.film-poster {
+    width: 150px;
+    float:left;
+}
+
+.card {
+    width: 42rem;
+}
